@@ -12,22 +12,22 @@ operator_model = operator_ns.model('BinaryOperator', {
     'b': fields.Fixed(decimals=3)
 })
 
-# curl -X POST -H 'Content-Type: application/json' --data '{"a": 3, "b": 4}' http://localhost:3000/soma
+# curl -X POST -H 'Content-Type: application/json' --data '{"a": 3, "b": 4}' http://localhost:5000/soma
 @operator_ns.route('/soma')
 @operator_ns.doc(description='Soma dois números')
 class Soma(Resource):
-    @operator_ns.marshal_with(operator_model, code=200)
-    def post(self, a: float, b: float):
-        # a = api.payload['a']
-        # b = api.payload['b']
+    # @operator_ns.marshal_with(operator_model, code=200)
+    def post(self):
+        a = api.payload['a']
+        b = api.payload['b']
         return {'message': a + b}
 
-# curl -X POST -H 'Content-Type: application/json' --data '{"a": 3, "b": 4}' http://localhost:3000/multiplicacao
+# curl -X POST -H 'Content-Type: application/json' --data '{"a": 3, "b": 4}' http://localhost:5000/multiplicacao
 @operator_ns.route('/multiplicacao')
 @operator_ns.doc(description='Multiplica dois números')
-@operator_ns.doc(body={'a': 'Primeiro número', 'b': 'Segundo número'})
+# @operator_ns.doc(body={'a': 'Primeiro número', 'b': 'Segundo número'})
 class Multiplicacao(Resource):
-    @operator_ns.marshal_with(operator_model, code=200)
+    # @operator_ns.marshal_with(operator_model, code=200)
     def post(self):
         a = api.payload['a']
         b = api.payload['b']
