@@ -12,6 +12,12 @@ operator_model = operator_ns.model('BinaryOperator', {
     'b': fields.Fixed(decimals=3)
 })
 
+@operator_ns.route('/')
+@operator_ns.doc(description='Health check')
+class HealthCheck(Resource):
+        def get(self):
+            return {'message': 'I am alive'}
+
 # curl -X POST -H 'Content-Type: application/json' --data '{"a": 3, "b": 4}' http://localhost:5000/soma
 @operator_ns.route('/soma')
 @operator_ns.doc(description='Soma dois números')
