@@ -20,7 +20,7 @@ jobs:
           script: |
             cd ~/espm-dataops-github-actions
             git pull
-            docker build -t flask-api .
-            docker stop flask-api || true
-            docker rm flask-api || true
-            docker run -d -p 80:80 --name flask-api flask-api
+            sudo docker build -t flask-api .
+            sudo docker stop flask-api || true
+            sudo docker rm flask-api || true
+            sudo docker run -d -p 80:80 --name flask-api flask-api
