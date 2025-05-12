@@ -12,7 +12,7 @@ operator_model = operator_ns.model('BinaryOperator', {
     'b': fields.Fixed(decimals=3)
 })
 
-@operator_ns.route('/')
+@operator_ns.route('/health')
 @operator_ns.doc(description='Health check')
 class HealthCheck(Resource):
         def get(self):
@@ -40,4 +40,4 @@ class Multiplicacao(Resource):
         return {'message': a * b}
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(host='0.0.0.0', debug=True, port=5000)
